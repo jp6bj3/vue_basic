@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .co {
+            width: 1200px;
+            height: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .s {
+            width: 800px;
+            padding: 0 50px;
+        }
+
+        .card {
+            width: 400px;
+            background: #000;
+        }
+
+        .list {
+            background: #edf4c4;
+        }
+
+        .list .li {
+            padding: 10px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        button {
+            padding: 10px;
+            border-radius: 10px;
+            margin: auto 0;
+            height: 40px;
+        }
+        img{
+            width: 100px;
+            height: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- .co>(.s>h2>ul>(li>img.pic+h3.name+p.de+p.tot+p.count+p.price+p.close)*3)+.card> -->
+    <div class="co" id="app">
+        <!-- <p v-for="n in 10">{{n}}</p> -->
+        <div class="s">
+            <h2>購物車</h2>
+            <div class="list" v-for="(cartItem,cartIndex) in cardLisr" :key="cartItem['id']">
+                <div class="li">
+                    <p class="id">{{cartItem['id']}}</p>
+                    <img :src="cartItem['img']" alt="" class="pic">
+                    <h3 class="name">{{cartItem['name']}}</h3>
+                    <button @click="de(cartIndex)">-</button>
+                    <p class="tot">{{cartItem['count']}}</p>
+                    <button @click="add(cartIndex)">+</button>
+                    <p class="price">{{cartItem['price']}}</p>
+                    <button @click="close(cartIndex)">X</button>
+                </div>
+            </div>
+            <div>total:{{total}}</div>
+        </div>
+        <div class="card"></div>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    cardLisr: [
+                        {
+                            id: 1,
+                            name: "水餃",
+                            price: 100,
+                            count: 0,
+                            img:"../img/images.jpg"
+                        },
+                        {
+                            id: 2,
+                            name: "鍋貼",
+                            price: 200,
+                            count: 0,
+                            img: "../img/images (1).jpg"
+                        },
+                    ]
+                }
+            },
+            methods: {
+                add(index) {
+                    this.cardLisr[index]['count'] += 1
+                },
+                de(index) {
+                    if (this.cardLisr[index]['count'] == 0) return
+                    this.cardLisr[index]['count'] -= 1
+                },
+            },
+            computed: {
+                total(){
+                    // return 1
+                    //想法
+                    // const prod1 =this.cardLisr[0]['count']*this.cardLisr[0]['price']
+                    // const prod1 =this.cardLisr[1]['count']*this.cardLisr[1]['price']
+                    // return prod1+prod2
+                    
+                    //for迴圈
+                    let price =0
+                    for (let index=0;index<this.cardLisr.length;index++){
+                        price += (this.cardLisr[index]['count']*this.cardLisr[index]['price'])
+                    }
+                    return price
+
+                    // //array.reduce
+                    // let price = this.cardLisr.reduce((total, item) => total + (item.count * item.price), 0);
+                    // return price;
+                }
+            },
+        }).mount("#app")
+
+    </script>
+</body>
+
+</html>

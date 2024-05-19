@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test1</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{ name }}，會用{{ skill["f2e"][0] }}</p>
+        <p>{{ live? "活著": "死掉了" }}</p>
+        <p v-text="music[2]"></p>
+        <h6 v-html="content"></h6>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    skill: {
+                        f2e: ['vue', 'react'],
+                        b2e: ['php', 'nodejs', 'ASP.net']
+                    },
+                    name: 'ingrid',
+                    age: 37,
+                    content: `<div style="color: red;">
+            嘿嘿<br>
+            吼吼
+          </div>`,
+                    live: TextTrackCue,
+                    music: ['aimar', 'one ok rock', 'mamamoo'],
+
+                    gender: null,
+                }
+            },
+        })
+        app.mount('#app')
+    </script>
+</body>
+
+</html>

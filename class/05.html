@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 2rem;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="addw">加大圖片</button>
+        <img src="../img/OMG20240514_184426.png" alt="">
+        <!-- <img src="imgUrl" alt="" style="width: 300px;"> -->
+        <img 
+        :src="imgUrl" 
+        :style="{
+            width: `${width}rem`,
+            backgroundColor: bg,
+        }" 
+        :alt="name">
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    imgUrl: '../img/OMG20240514_184426.png',
+                    bg: '#fa0',
+                    width: 2,
+                    name:'dddddd'
+                }
+            },
+            methods: {
+                addw() {
+                    if (this.width === 9) return
+                    this.width += 1;
+                    this.bg = `#${this.width}${this.width}${this.width}`
+                },
+            },
+        }).mount("#app")
+    </script>
+</body>
+
+</html>
