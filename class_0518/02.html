@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>123</div>
+    <script>
+        function add(a,b){
+            return parseInt(a) + parseInt(b)
+        }
+       const res=add(1, "2");//型別出錯
+       console.log(res);
+
+       const add1 = (a,b) => {
+            console.log('www');
+            return(a + b);//return完函數就結束
+            console.log('www');//不會執行
+
+       }
+       console.log(add1(1,2));
+
+       const a=(a,b)=>{return`我是${a}星座${b}`}
+       console.log(a("f","白羊座"));
+
+       const b = (a, b) => `我是${a}星座${b}` 
+        console.log(b("p", "白羊座"));
+
+    </script>
+</body>
+</html>
