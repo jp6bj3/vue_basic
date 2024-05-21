@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+       
         .co {
             width: 1200px;
             height: 1000px;
@@ -25,7 +26,8 @@
         }
 
         .list {
-            background: #edf4c4;
+            background: #e6e6e6;
+            padding: 10px 50px;
         }
 
         .list .li {
@@ -33,17 +35,21 @@
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+            align-items: center;
         }
 
         button {
             padding: 10px;
-            border-radius: 10px;
-            margin: auto 0;
+            border-radius: 50%;
             height: 40px;
+            width: 40px;
         }
         img{
             width: 100px;
             height: 80px;
+        }
+        .total{
+            padding: 20px;
         }
     </style>
 </head>
@@ -66,7 +72,7 @@
                     <button @click="close(cartIndex)">X</button>
                 </div>
             </div>
-            <div>total:{{total}}</div>
+            <div class="total">總價:{{total}}</div>
         </div>
         <div class="card"></div>
     </div>

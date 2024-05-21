@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img{
+      width: 100px;
+      object-fit: cover;
+    }
+    .card{
+      display: flex;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 貨物上架 -->
+    <div v-for="item in products" :key="products.id">
+      <div class="card">
+        <img :src="item.image" alt="">
+        <h6>{{item['title']}}</h6>
+        <div class="coutent">
+          <p >
+            {{item?.rating?.rate}}({{item?.rating?.count}})
+            <span v-for="star in parseInt(item?.rating?.rate)">⭐</span>
+            <span v-for="star in 5-parseInt(item?.rating?.rate)">★</span>
+          </p>
+          <p>{{item?.price}}</p>
+          <!-- v-for="n in {{item.rating.rate}}" -->
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+    Vue.createApp({
+      data() {
+        return {
+          products: [],
+        }
+      },
+      mounted() {
+        //畫面渲染完，開始執行作用域中的東西
+        //叫貨車
+        fetch('https://fakestoreapi.com/products')
+          .then(res => {
+            //貨車到了
+            return res.json()
+          })
+          .then(json => {
+            //貨車卸貨
+            console.log(json)
+            //放到倉庫里
+            this.products=json
+          })
+
+      },
+    }).mount("#app")
+  </script>
+</body>
+
+</html>
